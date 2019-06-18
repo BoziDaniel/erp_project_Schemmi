@@ -27,8 +27,16 @@ def start_module():
     Returns:
         None
     """
-    print("valami")
-    # your code
+    options = ["Store manager",
+               "List",
+               "Add1",
+               "Remove",
+               "Update",
+               "Get counts by Manufacturers",
+               "Average by Manufacterer",
+               "Exit to main menu"]
+    ui.print_menu(options[0], options[1:7], options[-1])
+    # clear Main menu
 
 
 def show_table(table):
@@ -109,7 +117,7 @@ def get_counts_by_manufacturers(table):
          dict: A dictionary with this structure: { [manufacturer] : [count] }
     """
 
-    # your code
+    # 
 
 
 def get_average_by_manufacturer(table, manufacturer):
