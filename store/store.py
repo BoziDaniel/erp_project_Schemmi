@@ -29,14 +29,28 @@ def start_module():
     """
     options = ["Store manager",
                "List",
-               "Add1",
+               "Add",
                "Remove",
                "Update",
-               "Get counts by Manufacturers",
-               "Average by Manufacterer",
+               "Get counts by manufacturers",
+               "Average by manufacterer",
                "Exit to main menu"]
     ui.print_menu(options[0], options[1:7], options[-1])
-    # clear Main menu
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "5":
+        get_counts_by_manufacturers(table)
+    elif option == "6":
+        get_average_by_manufacturer(table, manufacturer)
+
 
 
 def show_table(table):
@@ -50,7 +64,7 @@ def show_table(table):
         None
     """
 
-    # your code
+    print_table("games.csv", [])
 
 
 def add(table):

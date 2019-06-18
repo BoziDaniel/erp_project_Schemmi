@@ -27,7 +27,29 @@ def start_module():
         None
     """
 
-    # your code
+    options = ["Customer Relationship Management (CRM)",
+               "List",
+               "Add",
+               "Remove",
+               "Update",
+               "Get longest name ID",
+               "Get subscribed e-mails",
+               "Exit to main menu"]
+    ui.print_menu(options[0], options[1:7], options[-1])
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "5":
+        get_longest_name_id(table)
+    elif option == "6":
+        get_subscribed_emails(table)
 
 
 def show_table(table):

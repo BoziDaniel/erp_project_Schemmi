@@ -29,7 +29,29 @@ def start_module():
         None
     """
 
-    # you code
+    options = ["Accounting manager",
+               "List",
+               "Add",
+               "Remove",
+               "Update",
+               "Which year max",
+               "Average amount",
+               "Exit to main menu"]
+    ui.print_menu(options[0], options[1:7], options[-1])
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "5":
+        which_year_max(table)
+    elif option == "6":
+        avg_amount(table, year)
 
 
 def show_table(table):

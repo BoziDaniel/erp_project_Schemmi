@@ -1,4 +1,5 @@
 """ User Interface (UI) module """
+import csv
 
 
 def print_table(table, title_list):
@@ -22,8 +23,13 @@ def print_table(table, title_list):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your goes code
-
+    with open(table, 'r') as csv_file:
+        csv_reader = csv.reader(csv_file)
+        for lines in csv_reader:
+            title_list = 
+        #header
+            print
+        
 
 def print_result(result, label):
     """
@@ -91,11 +97,6 @@ def get_inputs(list_labels, title):
     for i in range(len(list_labels)):
         user_data = input(list_labels[i])
         inputs.append(user_data)
-    
-
-
-    # your code
-
     return inputs
 
 

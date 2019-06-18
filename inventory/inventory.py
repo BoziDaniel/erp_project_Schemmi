@@ -28,7 +28,15 @@ def start_module():
         None
     """
 
-    # your code
+    options = ["Inventory manager",
+               "List",
+               "Add",
+               "Remove",
+               "Update",
+               "Get available items",
+               "Get average durability by manufacterers",
+               "Exit to main menu"]
+    ui.print_menu(options[0], options[1:7], options[-1])
 
 
 def show_table(table):
