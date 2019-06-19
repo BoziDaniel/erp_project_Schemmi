@@ -37,9 +37,11 @@ def start_module():
                "Get lowest price item ID",
                "Get item sold between",
                "Exit to main menu"]
+
     ui.print_menu(options[0], options[1:7], options[-1])
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
+    
     if option == "1":
         show_table(table)
     elif option == "2":
@@ -52,6 +54,8 @@ def start_module():
         get_lowest_price_item_id(table)
     elif option == "6":
         get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
+    elif option =="0":
+        pass
 
 def show_table(table):
     """

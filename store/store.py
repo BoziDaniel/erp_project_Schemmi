@@ -35,21 +35,23 @@ def start_module():
                "Get counts by manufacturers",
                "Average by manufacterer",
                "Exit to main menu"]
+
     ui.print_menu(options[0], options[1:7], options[-1])
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
+
     if option == "1":
-        show_table(table)
+        show_table("games.csv")
     elif option == "2":
-        add(table)
+        add("games.csv")
     elif option == "3":
-        remove(table, id_)
+        remove("games.csv", id_)
     elif option == "4":
-        update(table, id_)
+        update("games.csv", id_)
     elif option == "5":
-        get_counts_by_manufacturers(table)
+        get_counts_by_manufacturers("games.csv")
     elif option == "6":
-        get_average_by_manufacturer(table, manufacturer)
+        get_average_by_manufacturer("games.csv", manufacturer)
     elif option =="0":
         pass
 
@@ -66,8 +68,6 @@ def show_table(table):
         None
     """
 
-    print_table("games.csv", [])
-
 
 def add(table):
     """
@@ -79,8 +79,12 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
-    # your code
+    existing_lines = data_manager.get_table_from_file("games.csv")
+    added_line = ui.get_inputs(["Title: ","Manufacturer: ", "Price :", "In_stock: "], "Please provide your data to add:")
+    random_ID = common.generate_random("games.csv")
+    added_line.insert(0, random_ID)
+    expanded_lines = existing_lines + added_line
+    data_manager.write_table_to_file("games.csv", expanded_lines)
 
     return table
 
@@ -96,6 +100,13 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
+    existing_lines = data_manager.get_table_from_file("games.csv")
+    choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you  would like to delete:")
+    line_to_delete = []
+    index_to_remove = index_list_of_list(choosen_ID)
+    existing_lines.remove(index_to_remove)
+    data_manager.write_table_to_file("games.csv", existing_lines)
+    
 
     # your code
 
@@ -113,8 +124,16 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
-
-    # your code
+    existing_lines = data_manager.get_table_from_file("games.csv")
+    choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
+    choosen_ID = choosen_ID[0]
+    update_data = ui.get_inputs(["Title: ","Manufacturer: ", "Price :", "In_stock: "], "Please provide data you would like to update:")
+    index_to_update = index_list_of_list(choosen_ID)
+    #not sure it works
+    for element_to_update in update_data:
+        existing_lines[element_to_update] = update_data[element_to_update]
+        
+    data_manager.write_table_to_file("games.csv", existing_lines)
 
     return table
 

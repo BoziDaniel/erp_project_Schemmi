@@ -35,9 +35,11 @@ def start_module():
                "Get longest name ID",
                "Get subscribed e-mails",
                "Exit to main menu"]
+               
     ui.print_menu(options[0], options[1:7], options[-1])
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
+
     if option == "1":
         show_table(table)
     elif option == "2":
@@ -50,6 +52,8 @@ def start_module():
         get_longest_name_id(table)
     elif option == "6":
         get_subscribed_emails(table)
+    elif option =="0":
+        pass
 
 
 def show_table(table):

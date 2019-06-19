@@ -32,3 +32,10 @@ def generate_random(table):
         generated_in_list.append(str(chr(random.choice(special_characters)))) #random special character from ascII decimal code
         generated = str(''.join(generated_in_list)) #join the elements of generated in list to a string, same format as in csv files (sample:  "kH34Ju#&"  )
     return generated
+
+
+def index_list_of_list(desired_element):
+    for idx, list in enumerate(A):
+        if value in list:
+            return idx
+        return -1

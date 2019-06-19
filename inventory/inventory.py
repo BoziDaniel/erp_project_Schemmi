@@ -36,8 +36,25 @@ def start_module():
                "Get available items",
                "Get average durability by manufacterers",
                "Exit to main menu"]
-    ui.print_menu(options[0], options[1:7], options[-1])
 
+    ui.print_menu(options[0], options[1:7], options[-1])
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        remove(table, id_)
+    elif option == "4":
+        update(table, id_)
+    elif option == "5":
+        get_available_items(table)
+    elif option == "6":
+        get_average_durability_by_manufacturers(table)
+    elif option =="0":
+        pass
 
 def show_table(table):
     """
