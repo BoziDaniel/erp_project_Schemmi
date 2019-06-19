@@ -19,7 +19,16 @@ def generate_random(table):
     """
 
     generated = ''
-
-    # your code
-
+    special_characters = [33, 35, 36, 37, 38, 63, 64]
+    while generated in table: #ezt lehet konkretizálni kell h ne nyűgösködjön vmi csöves spacere
+        generated_in_list = []
+        generated_in_list.append(str(chr(random.randrange(97, 123)))) #random lower letter from ascII decimal code
+        generated_in_list.append(str(chr(random.randrange(65, 91))))  #random upper letter from ascII decimal code
+        generated_in_list.append(str(chr(random.randrange(48, 58))))  #random number from ascII decimal code
+        generated_in_list.append(str(chr(random.randrange(48, 58))))  #random number from ascII decimal code
+        generated_in_list.append(str(chr(random.randrange(65, 91))))  #random upper letter from ascII decimal code
+        generated_in_list.append(str(chr(random.randrange(97, 123)))) #random lower letter from ascII decimal code
+        generated_in_list.append(str(chr(random.choice(special_characters)))) #random special character from ascII decimal code
+        generated_in_list.append(str(chr(random.choice(special_characters)))) #random special character from ascII decimal code
+        generated = str(''.join(generated_in_list)) #join the elements of generated in list to a string, same format as in csv files (sample:  "kH34Ju#&"  )
     return generated
