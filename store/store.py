@@ -50,6 +50,8 @@ def start_module():
         get_counts_by_manufacturers(table)
     elif option == "6":
         get_average_by_manufacturer(table, manufacturer)
+    elif option =="0":
+        pass
 
 
 
