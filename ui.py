@@ -22,8 +22,8 @@ def print_table(table, title_list):
         None: This function doesn't return anything it only prints to console.
     """
 
-    get_table_from_file(file_name)
-    print(table)
+    for element in table:
+        print(table)
         
 
 def print_result(result, label):
