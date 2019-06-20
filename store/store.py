@@ -45,6 +45,7 @@ def start_module():
     elif option == "2":
         add("games.csv")
     elif option == "3":
+        choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to delete:")
         remove("games.csv", choosen_ID)
     elif option == "4":
         update("games.csv", choosen_ID)
@@ -79,14 +80,15 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-    existing_lines = data_manager.get_table_from_file("store/games.csv")
+    table = data_manager.get_table_from_file("store/games.csv")
     added_line = ui.get_inputs(["Title: ","Manufacturer: ", "Price :", "In_stock: "], "Please provide your data to add:")
     random_ID = common.generate_random("store/games.csv")
     added_line.insert(0, random_ID)
     added_line_helper = []
     added_line_helper.append(added_line)
-    expanded_lines = existing_lines + added_line_helper
+    expanded_lines = table + added_line_helper
     data_manager.write_table_to_file("store/games.csv", expanded_lines)
+    start_module()
 
     return table
 
@@ -102,11 +104,9 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-    existing_lines = data_manager.get_table_from_file("store/games.csv")
-    choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you  would like to delete:")
-    line_to_delete = []
-    index_to_remove = index_list_of_list(choosen_ID)
-    existing_lines.remove(index_to_remove)
+    table = data_manager.get_table_from_file("store/games.csv")
+    index_to_remove = common.index_list_of_list(choosen_ID)
+    table.remove(index_to_remove)
     data_manager.write_table_to_file("store/games.csv", existing_lines)
     
 
