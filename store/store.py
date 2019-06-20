@@ -48,12 +48,13 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to delete:")
         remove("games.csv", choosen_ID)
     elif option == "4":
+        choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("games.csv", choosen_ID)
     elif option == "5":
         get_counts_by_manufacturers("games.csv")
     elif option == "6":
         get_average_by_manufacturer("games.csv", manufacturer)
-    elif option =="0":
+    elif option == "0":
         pass
 
 
@@ -125,17 +126,14 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
-    existing_lines = data_manager.get_table_from_file("store/games.csv")
-    choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
-    choosen_ID = choosen_ID[0]
+    table = data_manager.get_table_from_file("store/games.csv")
+    id_ = id_[0]
     update_data = ui.get_inputs(["Title: ","Manufacturer: ", "Price :", "In_stock: "], "Please provide data you would like to update:")
-    index_to_update = index_list_of_list(choosen_ID)
-    
-    #not sure it works
-    for element_to_update in update_data:
-        existing_lines[element_to_update] = update_data[element_to_update]
-        
-    data_manager.write_table_to_file("store/games.csv", existing_lines)
+    index_to_update = common.index_list_of_list(id_, table)
+    update_data.insert(0, id_)
+    table[index_to_update] = update_data
+    data_manager.write_table_to_file("store/games.csv", table)
+    start_module()
 
     return table
 

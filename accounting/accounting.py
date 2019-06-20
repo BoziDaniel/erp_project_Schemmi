@@ -50,12 +50,13 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to delete:")
         remove("items.csv", choosen_ID)
     elif option == "4":
-        update(table, id_)
+        choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
+        update("items.csv", choosen_ID)
     elif option == "5":
         which_year_max(table)
     elif option == "6":
         avg_amount(table, year)
-    elif option =="0":
+    elif option == "0":
         pass
 
 
@@ -85,7 +86,7 @@ def add(table):
     """
 
     table = data_manager.get_table_from_file("accounting/items.csv")
-    added_line = ui.get_inputs(["Month: ","Day: ", "Year: ", "Type: ", "Amount: "], "Please provide your data to add:")
+    added_line = ui.get_inputs(["Month: ", "Day: ", "Year: ", "Type: ", "Amount: "], "Please provide your data to add:")
     random_ID = common.generate_random("accounting/items.csv")
     added_line.insert(0, random_ID)
     added_line_helper = []
@@ -130,7 +131,14 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    table = data_manager.get_table_from_file("accounting/items.csv")
+    id_ = id_[0]
+    update_data = ui.get_inputs(["Month: ", "Day: ", "Year: ", "Type: ", "Amount: "], "Please provide data you would like to update:")
+    index_to_update = common.index_list_of_list(id_, table)
+    update_data.insert(0, id_)
+    table[index_to_update] = update_data
+    data_manager.write_table_to_file("accounting/items.csv", table)
+    start_module()
 
     return table
 
