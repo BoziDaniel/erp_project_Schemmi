@@ -109,9 +109,7 @@ def remove(table, id_):
     index_to_remove = common.index_list_of_list(id_, table)
     table.remove(table[index_to_remove])
     data_manager.write_table_to_file("store/games.csv", table)
-    
-
-    # your code
+    start_module()
 
     return table
 

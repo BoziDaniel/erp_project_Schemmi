@@ -46,7 +46,8 @@ def start_module():
     elif option == "2":
         add("inventory.csv")
     elif option == "3":
-        remove(table, id_)
+        choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to delete:")
+        remove("inventory.csv", choosen_ID)
     elif option == "4":
         update(table, id_)
     elif option == "5":
@@ -82,7 +83,7 @@ def add(table):
     """
 
     table = data_manager.get_table_from_file("inventory/inventory.csv")
-    added_line = ui.get_inputs(["Name: ","Manufacterer: ", "Purchase year: ", "Durability: "], "Please provide your data to add:")
+    added_line = ui.get_inputs(["Name: ", "Manufacterer: ", "Purchase year: ", "Durability: "], "Please provide your data to add:")
     random_ID = common.generate_random("inventory/inventory.csv")
     added_line.insert(0, random_ID)
     added_line_helper = []
@@ -106,7 +107,11 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    table = data_manager.get_table_from_file("inventory/inventory.csv")
+    index_to_remove = common.index_list_of_list(id_, table)
+    table.remove(table[index_to_remove])
+    data_manager.write_table_to_file("inventory/inventory.csv", table)
+    start_module()
 
     return table
 

@@ -47,7 +47,8 @@ def start_module():
     elif option == "2":
         add("sales.csv")
     elif option == "3":
-        remove(table, id_)
+        choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to delete:")
+        remove("sales.csv", choosen_ID)
     elif option == "4":
         update(table, id_)
     elif option == "5":
@@ -107,7 +108,11 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    table = data_manager.get_table_from_file("sales/sales.csv")
+    index_to_remove = common.index_list_of_list(id_, table)
+    table.remove(table[index_to_remove])
+    data_manager.write_table_to_file("sales/sales.csv", table)
+    start_module()
 
     return table
 
