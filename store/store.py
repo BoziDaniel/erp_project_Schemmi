@@ -104,10 +104,11 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
+
     table = data_manager.get_table_from_file("store/games.csv")
-    index_to_remove = common.index_list_of_list(choosen_ID)
-    table.remove(index_to_remove)
-    data_manager.write_table_to_file("store/games.csv", existing_lines)
+    index_to_remove = common.index_list_of_list(id_, table)
+    table.remove(table[index_to_remove])
+    data_manager.write_table_to_file("store/games.csv", table)
     
 
     # your code

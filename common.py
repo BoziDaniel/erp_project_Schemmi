@@ -34,8 +34,8 @@ def generate_random(table):
     return generated
 
 
-def index_list_of_list(desired_element):
-    for idx, list in enumerate(A):
-        if value in list:
+def index_list_of_list(desired_element, table):
+    for idx, list in enumerate(table):
+        if desired_element in list:
             return idx
         return -1
