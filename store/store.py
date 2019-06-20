@@ -81,7 +81,7 @@ def add(table):
         list: Table with a new record
     """
     table = data_manager.get_table_from_file("store/games.csv")
-    added_line = ui.get_inputs(["Title: ","Manufacturer: ", "Price :", "In_stock: "], "Please provide your data to add:")
+    added_line = ui.get_inputs(["Title: ","Manufacturer: ", "Price: ", "In_stock: "], "Please provide your data to add:")
     random_ID = common.generate_random("store/games.csv")
     added_line.insert(0, random_ID)
     added_line_helper = []

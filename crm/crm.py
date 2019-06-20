@@ -43,7 +43,7 @@ def start_module():
     if option == "1":
         show_table(table)
     elif option == "2":
-        add(table)
+        add("crm/customers.csv")
     elif option == "3":
         remove(table, id_)
     elif option == "4":
@@ -81,7 +81,15 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    table = data_manager.get_table_from_file("crm/customers.csv")
+    added_line = ui.get_inputs(["Name: ","E-mail: ", "Subscribed: "], "Please provide your data to add:")
+    random_ID = common.generate_random("crm/customers.csv")
+    added_line.insert(0, random_ID)
+    added_line_helper = []
+    added_line_helper.append(added_line)
+    expanded_lines = table + added_line_helper
+    data_manager.write_table_to_file("crm/customers.csv", expanded_lines)
+    start_module()
 
     return table
 
