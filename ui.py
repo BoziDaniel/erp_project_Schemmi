@@ -21,10 +21,27 @@ def print_table(table, title_list):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
+      
+    
+    title_list_helper = []
+    title_list_helper.append(title_list) #provides help to be able to add the title to the table
+    table_with_titles = table + title_list_helper
+    trasponsed_table = list(map(list, zip(*table_with_titles))) #creates a new table with ex changed rows and columns in the table
+    longest_element_in_columns = []
+    
+    for small_list in trasponsed_table:
+        local_shit = []
+        for local_longest in small_list:
+            local_shit.append(len(str(local_longest)))    
+        longest_element_in_columns.append(max(local_shit))
 
-    for element in table:
+    width_of_table = len_column_separator * len(title_list)-1 + sum(longest_element_in_columns)
+
+
+
         print(table)
-        
+
+
 
 def print_result(result, label):
     """
@@ -89,6 +106,7 @@ def get_inputs(list_labels, title):
     """
     inputs = []
     print(title)
+
     for i in range(len(list_labels)):
         user_data = input(list_labels[i])
         inputs.append(user_data)
