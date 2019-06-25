@@ -134,7 +134,7 @@ def update(table, id_):
     index_to_update = common.index_list_of_list(id_, table)
     update_data.insert(0, id_)
     table[index_to_update] = update_data
-    data_manager.write_table_to_file("hr/persons.csv"", table)
+    data_manager.write_table_to_file("hr/persons.csv", table)
     start_module()
 
     return table
