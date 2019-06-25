@@ -21,25 +21,47 @@ def print_table(table, title_list):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-      
-    
-    title_list_helper = []
-    title_list_helper.append(title_list) #provides help to be able to add the title to the table
-    table_with_titles = table + title_list_helper
-    trasponsed_table = list(map(list, zip(*table_with_titles))) #creates a new table with ex changed rows and columns in the table
+
+    table = [element.replace("\n", "").split(";") for element in table]
+    table.insert(0, title_list)
+    trasponsed_table = list(map(list, zip(*table))) 
     longest_element_in_columns = []
-    
-    for small_list in trasponsed_table:
-        local_shit = []
-        for local_longest in small_list:
-            local_shit.append(len(str(local_longest)))    
-        longest_element_in_columns.append(max(local_shit))
+    separator = "-"
+    column_separator = " | "
+    len_column_separator = len(column_separator)
+    right_corner = "\\"
+    left_corner = " /"
+    correction_tag = 1
+    line_separator = ""
+    table_to_print = ""
 
-    width_of_table = len_column_separator * len(title_list)-1 + sum(longest_element_in_columns)
+    for columns in trasponsed_table:
+        column = []
+        for local_longest in columns:
+            column.append(len(str(local_longest)))    
+        longest_element_in_columns.append(max(column))
 
 
+    width_of_table = len_column_separator * (len(title_list)) + sum(longest_element_in_columns) - correction_tag
 
-        print(table)
+    #Header & footer
+    Top_bottom = left_corner + (separator * width_of_table) + right_corner
+
+    #line_separator
+    for i, element in enumerate(longest_element_in_columns):
+        line_separator += column_separator + longest_element_in_columns[i] * separator
+
+    #közértes
+    for row in table:
+        for i, element in enumerate(row):
+            table_to_print += column_separator + element.center(longest_element_in_columns[i])
+        table_to_print += column_separator + "\n" 
+        table_to_print += line_separator + column_separator + "\n" 
+
+    row_to_print = table_to_print, end = "\n"
+    table = (Top_bottom + "\n" + row_to_print)
+
+    print(table)
 
 
 

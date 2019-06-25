@@ -70,6 +70,7 @@ def show_table(table):
         None
     """
 
+    ui.print_table("store/games.csv", ["ID", "Title","Manufacturer", "Price", "In_stock"])
 
 def add(table):
     """
