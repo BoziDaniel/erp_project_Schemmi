@@ -51,7 +51,6 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("customers.csv", choosen_ID)
     elif option == "5":
-    elif option == "5":
         get_longest_name_id(table)
     elif option == "6":
         get_subscribed_emails(table)
