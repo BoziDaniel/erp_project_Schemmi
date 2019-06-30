@@ -41,7 +41,7 @@ def start_module():
     option = inputs[0]
 
     if option == "1":
-        show_table(table)
+        show_table("customers.csv")
     elif option == "2":
         add("customers.csv")
     elif option == "3":
@@ -69,7 +69,8 @@ def show_table(table):
         None
     """
 
-    # your code
+    table = data_manager.get_table_from_file("crm/customers.csv")
+    ui.print_table(table, ["Name: ", "E-mail: ", "Subscribed: "])
 
 
 def add(table):

@@ -25,7 +25,6 @@ def print_table(table, title_list):
         for element in line:
             element.replace("\n", "").split(";")
     table.insert(0, title_list)
-    print(table)
     trasponsed_table = list(map(list, zip(*table))) 
     longest_element_in_columns = []
     separator = "-"

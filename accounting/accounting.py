@@ -43,7 +43,7 @@ def start_module():
     option = inputs[0]
     
     if option == "1":
-        show_table(table)
+        show_table("items.csv")
     elif option == "2":
         add("items.csv")
     elif option == "3":
@@ -71,7 +71,8 @@ def show_table(table):
         None
     """
 
-    # your code
+    table = data_manager.get_table_from_file("accounting/items.csv")
+    ui.print_table(table, ["Month: ", "Day: ", "Year: ", "Type: ", "Amount: "])
 
 
 def add(table):
