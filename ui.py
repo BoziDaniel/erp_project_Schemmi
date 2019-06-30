@@ -21,8 +21,9 @@ def print_table(table, title_list):
     Returns:
         None: This function doesn't return anything it only prints to console.
     """
-
-    table = [element.replace("\n", "").split(";") for element in table]
+    for line in table:
+        for element in line:
+            element.replace("\n", "").split(";")
     table.insert(0, title_list)
     print(table)
     trasponsed_table = list(map(list, zip(*table))) 
@@ -59,7 +60,7 @@ def print_table(table, title_list):
         table_to_print += column_separator + "\n" 
         table_to_print += line_separator + column_separator + "\n" 
 
-    row_to_print = table_to_print, end = "\n"
+    row_to_print = table_to_print
     table = (Top_bottom + "\n" + row_to_print)
 
     print(table)
