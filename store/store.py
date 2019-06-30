@@ -41,7 +41,8 @@ def start_module():
     option = inputs[0]
 
     if option == "1":
-        show_table("games.csv")
+        table = data_manager.get_table_from_file("store/games.csv")
+        show_table(table)
     elif option == "2":
         add("games.csv")
     elif option == "3":
@@ -70,7 +71,7 @@ def show_table(table):
         None
     """
 
-    ui.print_table("store/games.csv", ["ID", "Title","Manufacturer", "Price", "In_stock"])
+    ui.print_table(myfile_inlists, ["ID", "Title","Manufacturer", "Price", "In_stock"])
 
 def add(table):
     """
