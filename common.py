@@ -40,3 +40,8 @@ def index_list_of_list(desired_element, table):
             return idx
         return -1
 
+def my_sum(array):
+    summa = 0
+    for item in array:
+        summa += int(item)
+    return summa

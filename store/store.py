@@ -53,7 +53,8 @@ def start_module():
     elif option == "5":
         get_counts_by_manufacturers("games.csv")
     elif option == "6":
-        get_average_by_manufacturer("games.csv", manufacturer)
+        choosen_manufacturer = ui.get_inputs(["Manufacturer: "], "Average of games in stock: ")
+        get_average_by_manufacturer("games.csv", choosen_manufacturer)
     elif option == "0":
         pass
 
@@ -180,5 +181,13 @@ def get_average_by_manufacturer(table, manufacturer):
     Returns:
          number
     """
+    table = data_manager.get_table_from_file("store/games.csv")
+    games_in_stock = []
+    for row in table:
+        if manufacturer[0] in row:
+            games_in_stock.append(row[4])
+    average_by_manufacturer = common.my_sum(games_in_stock)/len(games_in_stock)
 
-    # your code
+    return average_by_manufacturer
+
+    
