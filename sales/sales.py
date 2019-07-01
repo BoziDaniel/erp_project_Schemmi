@@ -71,7 +71,7 @@ def show_table(table):
     """
 
     table = data_manager.get_table_from_file("sales/sales.csv")
-    ui.print_table(table, ["Title: ", "Price: ", "Month: ", "Day: ", "Year: "])
+    ui.print_table(table, ["ID", "Title: ", "Price: ", "Month: ", "Day: ", "Year: "])
 
 
 def add(table):

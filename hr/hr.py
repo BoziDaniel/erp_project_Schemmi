@@ -69,7 +69,7 @@ def show_table(table):
     """
 
     table = data_manager.get_table_from_file("hr/persons.csv")
-    ui.print_table(table, ["Name: ", "Birth year: "])
+    ui.print_table(table, ["ID", "Name: ", "Birth year: "])
 
 
 def add(table):

@@ -70,7 +70,7 @@ def show_table(table):
     """
 
     table = data_manager.get_table_from_file("crm/customers.csv")
-    ui.print_table(table, ["Name: ", "E-mail: ", "Subscribed: "])
+    ui.print_table(table, ["ID", "Name: ", "E-mail: ", "Subscribed: "])
 
 
 def add(table):

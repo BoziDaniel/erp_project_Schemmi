@@ -72,7 +72,7 @@ def show_table(table):
     """
 
     table = data_manager.get_table_from_file("accounting/items.csv")
-    ui.print_table(table, ["Month: ", "Day: ", "Year: ", "Type: ", "Amount: "])
+    ui.print_table(table, ["ID", "Month: ", "Day: ", "Year: ", "Type: ", "Amount: "])
 
 
 def add(table):

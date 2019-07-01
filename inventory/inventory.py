@@ -70,7 +70,7 @@ def show_table(table):
     """
 
     table = data_manager.get_table_from_file("inventory/inventory.csv")
-    ui.print_table(table, ["Name: ", "Manufacterer: ", "Purchase year: ", "Durability: "])
+    ui.print_table(table, ["ID", "Name: ", "Manufacterer: ", "Purchase year: ", "Durability: "])
 
 
 def add(table):
