@@ -180,4 +180,23 @@ def get_persons_closest_to_average(table):
         list: list of strings (name or names if there are two more with the same value)
     """
 
-    # your code
+    table = data_manager.get_table_from_file("hr/persons.csv")
+    employees_with_birth_date = {}
+    birth_years = []
+    closest_to_average = 0
+    avg_birth_year = 0
+    closest_names = []
+    for row in table:
+        employees_with_birth_date[row[1]] = int(row[2])
+        birth_years.append(int(row[2]))
+    avg_birth_year = common.my_sum(birth_years)/len(birth_years)
+    for name in employees_with_birth_date.keys():
+        difference = abs(avg_birth_year - employees_with_birth_date[name])
+        employees_with_birth_date[name] = difference
+    closest_to_average = min(employees_with_birth_date.values())
+    for name, year_diff in employees_with_birth_date.items():
+        if year_diff == closest_to_average:
+            closest_names.append(name)
+
+
+    return closest_names
