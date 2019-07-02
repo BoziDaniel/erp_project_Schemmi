@@ -50,9 +50,9 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("persons.csv", choosen_ID)
     elif option == "5":
-        get_oldest_person(table)
+        get_oldest_person("persons.csv")
     elif option == "6":
-        get_persons_closest_to_average(table)
+        get_persons_closest_to_average("persons.csv")
     elif option == "0":
         pass
 
@@ -155,8 +155,19 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
-    # your code
+    table = data_manager.get_table_from_file("hr/persons.csv")
+    employees_with_birth_date = []
+    birth_years = []
+    oldest_persons = []
+    for row in table:
+        employees_with_birth_date.append((row[1], int(row[2])))
+        birth_years.append(int(row[2]))
+ 
+    for person in employees_with_birth_date:
+        if person[1] == min(birth_years):
+            oldest_persons.append(person[0])
 
+    return (oldest_persons)
 
 def get_persons_closest_to_average(table):
     """
