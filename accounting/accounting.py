@@ -53,7 +53,7 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("items.csv", choosen_ID)
     elif option == "5":
-        which_year_max(table)
+        which_year_max("items.csv")
     elif option == "6":
         avg_amount(table, year)
     elif option == "0":
@@ -158,7 +158,29 @@ def which_year_max(table):
         number
     """
 
-    # your code
+    table = data_manager.get_table_from_file("accounting/items.csv")
+    year_column = 3
+    years_in_out_dict = {}
+    in_or_out_column = 4
+    amount_of_income_column = -1
+    
+    #no error handling! if u add a bad line it 'll give error!
+    for line in table:
+        if line[year_column] in years_in_out_dict.keys() and line[in_or_out_column]  == "in":
+            years_in_out_dict[line[year_column]] += int(line[amount_of_income_column])
+        elif line[year_column] in years_in_out_dict.keys() and line[in_or_out_column]  == "out":
+            years_in_out_dict[line[year_column]] -= int(line[amount_of_income_column])
+        elif line[year_column] not in years_in_out_dict.keys():
+            if line[in_or_out_column] == "in":
+                years_in_out_dict.update({line[year_column]: int(line[amount_of_income_column])})
+            elif line[in_or_out_column] == "out":
+                years_in_out_dict.update({line[year_column]: -int(line[amount_of_income_column])})
+
+    for key, value in years_in_out_dict.items():
+        if value == max(years_in_out_dict.values()):
+            result = key
+        
+    return result
 
 
 def avg_amount(table, year):
