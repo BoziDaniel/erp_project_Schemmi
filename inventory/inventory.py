@@ -58,6 +58,7 @@ def start_module():
     elif option == "0":
         pass
 
+
 def show_table(table):
     """
     Display a table
@@ -161,8 +162,8 @@ def get_available_items(table):
     for row in table:
         if 2019 < int(row[-2]) + int(row[-1]):
             not_exceeded_items.append(row)
-    #print(not_exceeded_items)
     return not_exceeded_items
+
 
 def get_average_durability_by_manufacturers(table):
     """
@@ -176,13 +177,19 @@ def get_average_durability_by_manufacturers(table):
     """
 
     table = data_manager.get_table_from_file("inventory/inventory.csv")
-    manufacturers = {}
+    manufacturers_with_sum_durability = {}
+    number_of_manufacturer_appearance = {}
+    average_durability = {}
     manufactorers_column = 2
     durability_column = -1
+    count_appearance_in_list = 1
     for line in table:
-        if line[2] not in manufacturers:
-            manufacturers[line[manufactorers_column]] = line[durability_column]
-        else:manufacturers[line[manufacturer]] += line[durability_column]
-            #key legyen lista, első szám a sum durab, 2. h hány elemből jött
-
-
+        if line[manufactorers_column] not in manufacturers_with_sum_durability:
+            manufacturers_with_sum_durability[line[manufactorers_column]] = int(line[durability_column])
+            number_of_manufacturer_appearance[line[manufactorers_column]] = int(count_appearance_in_list)
+        else:
+            manufacturers_with_sum_durability[line[manufactorers_column]] += int(line[durability_column])
+            number_of_manufacturer_appearance[line[manufactorers_column]] += 1
+    for key in manufacturers_with_sum_durability:
+        average_durability.update({key: manufacturers_with_sum_durability[key]/number_of_manufacturer_appearance[key]})
+    return average_durability
