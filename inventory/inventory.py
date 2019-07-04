@@ -52,9 +52,9 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("inventory.csv", choosen_ID)
     elif option == "5":
-        get_available_items(table)
+        get_available_items("inventory.csv")
     elif option == "6":
-        get_average_durability_by_manufacturers(table)
+        get_average_durability_by_manufacturers("inventory.csv")
     elif option == "0":
         pass
 
@@ -156,8 +156,13 @@ def get_available_items(table):
         list: list of lists (the inner list contains the whole row with their actual data types)
     """
 
-    # your code
-
+    table = data_manager.get_table_from_file("inventory/inventory.csv")
+    not_exceeded_items = []
+    for row in table:
+        if 2019 < int(row[-2]) + int(row[-1]):
+            not_exceeded_items.append(row)
+    #print(not_exceeded_items)
+    return not_exceeded_items
 
 def get_average_durability_by_manufacturers(table):
     """
@@ -170,4 +175,14 @@ def get_average_durability_by_manufacturers(table):
         dict: a dictionary with this structure: { [manufacturer] : [avg] }
     """
 
-    # your code
+    table = data_manager.get_table_from_file("inventory/inventory.csv")
+    manufacturers = {}
+    manufactorers_column = 2
+    durability_column = -1
+    for line in table:
+        if line[2] not in manufacturers:
+            manufacturers[line[manufactorers_column]] = line[durability_column]
+        else:manufacturers[line[manufacturer]] += line[durability_column]
+            #key legyen lista, első szám a sum durab, 2. h hány elemből jött
+
+
