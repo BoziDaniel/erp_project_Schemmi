@@ -51,9 +51,9 @@ def start_module():
         choosen_ID = ui.get_inputs(["ID: "], "Please provide the ID of the record you would like to update:")
         update("customers.csv", choosen_ID)
     elif option == "5":
-        get_longest_name_id(table)
+        get_longest_name_id("customers.csv")
     elif option == "6":
-        get_subscribed_emails(table)
+        get_subscribed_emails("customers.csv")
     elif option == "0":
         pass
 
@@ -157,7 +157,28 @@ def get_longest_name_id(table):
                 the last by alphabetical order of the names)
         """
 
-    # your code
+    table = data_manager.get_table_from_file("crm/customers.csv")
+    id_with_names = {}
+    name = 1
+    id = 0
+    names = []
+    longest_name_element_no = 0
+    longest_names = []
+    for line in table:
+        id_with_names[line[id]] = line[name]
+        names.append(line[name])
+    for identication in names:
+        if len(identication) > longest_name_element_no:
+            longest_name_element_no = len(identication)
+    for tag, person in id_with_names.items():
+        if len(person) == longest_name_element_no:
+            longest_names.append(person)
+    last_alphabetical_name = max(longest_names)
+    for tag, person in id_with_names.items():
+        if len(person) == longest_name_element_no and person == last_alphabetical_name:
+            return tag
+            
+
 
 
 # the question: Which customers has subscribed to the newsletter?
